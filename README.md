@@ -12,7 +12,7 @@ The questions were answered using Databricks SQL. All queries, their outputs, an
 1. **Channel performance:** revenue by channel for FY2024 and FY2025, with growth from FY2024 to FY2025.
 2. **Profit by product line:** by product line - revenue, cost of goods, gross profit and gross margin.
 3. **Collections problem:** by channel - invoices settled and open, days to settle and value outstanding.
-4. **Top ten accounts:** the ten largest customers by FY2025 revenue, with owning rep.
+4. **Top ten accounts:** the ten largest customers by FY2025 revenue, each with an assigned rep.
 5. **Commercial gap:** the fifteen highest-revenue wholesale customers who never received a trade promotion.
 6. **Rep performance:** each rep's FY2025 monthly average against their target.
 7. **Shape of the year FY2024 & FY2025:** monthly revenue, month-on-month change in revenue, and the average of rolling three-month revenue.
