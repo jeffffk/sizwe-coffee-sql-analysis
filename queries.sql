@@ -77,7 +77,7 @@ JOIN sizwe_ar_ledger al
     ON c.customer_id = al.customer_id
 GROUP BY c.channel;
 
--- Answer: One can see that the major collections problem lies with the wholesale channel. The total number of invoices for wholesale was 28944 and for subscription 19200. Its unsettled invoices are significantly higher (3454) than the subscription channel (44). Likewise, the wholesale channel takes much longer to settle (69 vs 4 days) and the total unsettled amount is much higher than the subscription channel (~R87.8m vs ~R7.5m). I would investigate wholesale channel first. It's also important to note that this doesn’t show whether it’s getting worse over time.
+-- Answer: Wholesale is where the collections problem sits: 3,454 of its 28,944 invoices (12%) are still open, against 44 of 19,200 (0.2%) for subscription, and wholesale takes 69 days to settle on average versus 4. Wholesale also holds about R87.8m of the outstanding value against about R750,000 for subscription, so I would investigate wholesale first, though this compares channels rather than time periods, so it doesn't show whether payment is getting slower.
 
 -- ====================================================================
 
@@ -128,7 +128,7 @@ LEFT JOIN sizwe_trade_promotions tp ---Not inner join, because we want to see wh
     ON c.customer_id = tp.customer_id
 WHERE c.channel = 'Wholesale'
     AND tp.customer_id IS NULL
-GROUP BY c.trading_name, c.segment, c.province
+GROUP BY c.customer_id, c.trading_name, c.segment, c.province
 ORDER BY 4 DESC
 LIMIT 15;
 
@@ -255,4 +255,4 @@ SELECT
     ROUND((100 * fy2025_rev / SUM(fy2025_rev) OVER()),2) AS fy2025_share_percent
 FROM revenue_cogs;
 
--- Answer: The gross margin for each product line hasn't changed significantly from 2024 to 2025 (all within 0.3 percentage points). However, there's been more significant changes in each of their share of the total revenue in each year. Most notably, Bulk commercial product line's share of the total revenue has increased from 25.02% to 33.65% from FY2024 to FY2025. Bulk commercial has the smallest gross margin compared to other product lines for both years (19.89% and 19.91%) against higher margins elsewhere. This contributed to the reduced overall gross margin in 2025. At the same time, the decline in gross margin is further accounted for by the decreased share of the total revenue for the product lines with higher gross margins. For example, Single Origin product line which has the highest gross margin has contributed relatively less to the total revenue in 2025 (17.57%) compared to in 2024 (19.45%). The same reason applies to all the remaining product lines with higher gross margins.
+-- Answer: The gross margin for each product line hasn't changed significantly from 2024 to 2025 (all within 0.3 percentage points). However, there have been more significant changes in each of their share of the total revenue in each year. Most notably, Bulk commercial product line's share of the total revenue has increased from 25.02% to 33.65% from FY2024 to FY2025. Bulk commercial has the smallest gross margin compared to other product lines for both years (19.89% and 19.91%) against higher margins elsewhere. This contributed to the reduced overall gross margin in 2025. At the same time, the decline in gross margin is further accounted for by the decreased share of the total revenue for the product lines with higher gross margins. For example, Single Origin product line which has the highest gross margin has contributed relatively less to the total revenue in 2025 (17.57%) compared to in 2024 (19.45%). The same reason applies to all the remaining product lines with higher gross margins.
