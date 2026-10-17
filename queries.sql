@@ -98,8 +98,8 @@ JOIN sizwe_sales_orders so
     ON c.customer_id = so.customer_id
 JOIN sizwe_sales_lines sl
     ON so.order_id = sl.order_id
-LEFT JOIN sizwe_reps r
-    ON c.rep_id = r.rep_id
+LEFT JOIN sizwe_reps r -- LEFT JOIN to prevent dropping customers without a rep
+    ON c.rep_id = r.rep_id  
 WHERE order_date BETWEEN '2024-07-01' AND '2025-06-30'
 GROUP BY 1, 2, 3, 4, 5, 6
 ORDER BY 7 DESC
@@ -127,7 +127,7 @@ LEFT JOIN sizwe_trade_promotions tp ---Not inner join, because we want to see wh
 WHERE c.channel = 'Wholesale'
     AND tp.customer_id IS NULL
 GROUP BY c.customer_id, c.trading_name, c.segment, c.province
-ORDER BY 4 DESC
+ORDER BY 5 DESC
 LIMIT 15;
 
 -- Answer: I would get the territorial sales reps to telephonically reach these customers (Umhlanga Fresh 108 in Gauteng, Ridgeway Foods 308 in KZN, Kalahari Kitchen 42 in Gauteng) and offer them a trade promotion, as their total revenue is quite sizeable and we don't want to lose them to a competitor who might offer them a discount.
@@ -192,7 +192,7 @@ monthly_revenue_lags AS
         LAG(LAG(LAG(month_revenue) OVER(ORDER BY year_month)) OVER(ORDER BY year_month)) OVER(ORDER BY year_month) AS month_lag_3
     FROM monthly_revenue
     )
-    
+
 -- rolling_3_month_avg = average of the 3 months before each month (current month excluded)
 
 SELECT 
@@ -203,7 +203,7 @@ SELECT
 FROM monthly_revenue_lags
 ORDER BY 1;
 
--- Answer: It is clear that the monthly revenue drops month-over-month from Jul to Dec and it grows from Jan to Jun. The quietest month was Dec 2023 (R29,872,699.78) which was -13.09% from Nov 2023 and lower than the 3 lagging months' average of R35,654,249.12 (Sep, Oct, Nov 2023).
+-- Answer: Yes, there is a seasonal pattern. It is clear that the monthly revenue drops month-over-month from Jul to Dec and it grows from Jan to Jun. The quietest month was Dec 2023 (R29,872,699.78) which was -13.09% from Nov 2023 and lower than the 3 lagging months' average of R35,654,249.12 (Sep, Oct, Nov 2023).
 
 -- ====================================================================
 
