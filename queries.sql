@@ -32,7 +32,7 @@ SELECT
     ROUND(((fy2025_revenue - fy2024_revenue) / fy2024_revenue * 100), 2) AS percent_growth
 FROM draft_revenue
     
--- =====================================================================================================================
+-- ====================================================================
     
 -- Task 2 - Where the profit actually comes from
 
@@ -53,7 +53,7 @@ ORDER BY 4 DESC
 -- Answer:
 -- The most profitable product line is House Blend. However, it's Single Origin that has the highest gross margin percentage.
 
--- =====================================================================================================================
+-- ====================================================================
 
 -- Task 3 - The collections problem
 
@@ -79,7 +79,7 @@ GROUP BY c.channel
 
 -- Answer: One can see that the major collections problem lies with the wholesale channel. Its unsettled invoices is significantly higher than the subscription channel. Likewise, the wholesale channel takes much longer to settle (69 vs 4 days) and the total unsettled amount is much higher than the subscription channel (~R87m vs ~R7.5m).
 
--- =====================================================================================================================
+-- ====================================================================
 
 -- Task 4 - The ten accounts that matter most
 
@@ -108,7 +108,7 @@ GROUP BY trading_name, segment, province, rep_name
 ORDER BY 5 DESC
 LIMIT 10
 
--- =====================================================================================================================
+-- ====================================================================
 
 -- Task 5 - A commercial gap
 
@@ -134,7 +134,7 @@ LIMIT 15
 
 -- Answer: I would get the Gauteng and KZN sales reps to telephonically reach these customers and offer them a trade promotion, as their total revenue is quite sizeable and we don't want to lose them to a competitor who might offer them a discount.
 
--- =====================================================================================================================
+-- ====================================================================
 
 -- Task 6 - Are the sales representatives hitting target?
 
@@ -165,7 +165,7 @@ LEFT JOIN sizwe_sales_lines sl
 GROUP BY 1, 2, 3, 4
 ORDER BY 6 DESC
 
--- =====================================================================================================================
+-- ====================================================================
 
 -- Task 7 - The shape of the year
 
@@ -207,7 +207,7 @@ FROM monthly_revenue_lags
 
 -- Answer: It is clear that the monthly revenue drops month-over-month during the winter, more specifically from Jul to Jan (i.e. winter) and it grows from Feb to Jun (i.e. summer). The questest month was Dec 2024 but Dec 2025 also performed poorly. 
 
--- =====================================================================================================================
+-- ====================================================================
 
 -- Task 8 - Why has the margin moved?
 
@@ -256,11 +256,3 @@ SELECT
 FROM revenue_cogs
 
 -- Answer: The gross margin for each product line hasn't changed significantly from 2024 to 2025. However, there's been more significant changes in each of their share of the total revenue in each year. Most notably, Bulk commercial product line has increased from 25.02% to 33.65%. Bulk commercial has the smallest gross margin compared to other product lines. This contributed to the reduced gross margin in 2025. At the same time, the decline in gross margin is further accounted for by the decreased share of the total revenue for the product lines with higher gross margins. For example, Single Origin product line which has the highest gross margin has contributed relately less to the total revenue in 2025 (17.57%) compared to in 2024 (19.45%). The same reason applies to all the remaining product lines with higher gross margins.
-
-
-
-
-
-
-
-
