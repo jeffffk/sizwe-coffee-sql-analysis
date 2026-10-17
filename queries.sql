@@ -30,7 +30,7 @@ SELECT
     fy2024_revenue,
     fy2025_revenue,
     ROUND(((fy2025_revenue - fy2024_revenue) / fy2024_revenue * 100), 2) AS percent_growth
-FROM draft_revenue
+FROM draft_revenue;
     
 -- ====================================================================
     
@@ -48,10 +48,10 @@ FROM sizwe_products p
 JOIN sizwe_sales_lines sl
     ON p.sku = sl.sku
 GROUP BY product_line
-ORDER BY 4 DESC
+ORDER BY 4 DESC;
 
 -- Answer:
--- The most profitable product line is House Blend. However, it's Single Origin that has the highest gross margin percentage.
+-- The House Blend product line yielded the highest gross profit of R107,148,746.60). However, it's Single Origin that has the highest gross margin percentage of 44.27%.
 
 -- ====================================================================
 
@@ -63,11 +63,11 @@ SELECT
     c.channel,
     COUNT(invoice_no) AS num_invoices,
     SUM(CASE
-            WHEN invoice_amount = amount_settled THEN 1
+            WHEN settlement_date IS NOT NULL THEN 1
             ELSE 0
         END) AS num_invoices_settled,
     SUM(CASE
-            WHEN invoice_amount > amount_settled THEN 1
+            WHEN settlement_date IS NULL THEN 1
             ELSE 0
         END) AS num_invoices_unsettled,
     CEILING(AVG(DATEDIFF(DAY, invoice_date, settlement_date))) AS avg_days_settle,
@@ -75,9 +75,9 @@ SELECT
 FROM sizwe_customers c
 JOIN sizwe_ar_ledger al
     ON c.customer_id = al.customer_id
-GROUP BY c.channel
+GROUP BY c.channel;
 
--- Answer: One can see that the major collections problem lies with the wholesale channel. Its unsettled invoices is significantly higher than the subscription channel. Likewise, the wholesale channel takes much longer to settle (69 vs 4 days) and the total unsettled amount is much higher than the subscription channel (~R87m vs ~R7.5m).
+-- Answer: One can see that the major collections problem lies with the wholesale channel. Its unsettled invoices is significantly higher (3454) than the subscription channel (44). Likewise, the wholesale channel takes much longer to settle (69 vs 4 days) and the total unsettled amount is much higher than the subscription channel (~R87m vs ~R7.5m).
 
 -- ====================================================================
 
@@ -106,7 +106,7 @@ LEFT JOIN sizwe_reps r --Prevent silent dropping of customers without rep visits
     ON r.rep_id = rv.rep_id
 GROUP BY trading_name, segment, province, rep_name
 ORDER BY 5 DESC
-LIMIT 10
+LIMIT 10;
 
 -- ====================================================================
 
@@ -130,9 +130,9 @@ WHERE c.channel = 'Wholesale'
     AND tp.customer_id IS NULL
 GROUP BY c.trading_name, c.segment, c.province
 ORDER BY 4 DESC
-LIMIT 15
+LIMIT 15;
 
--- Answer: I would get the Gauteng and KZN sales reps to telephonically reach these customers and offer them a trade promotion, as their total revenue is quite sizeable and we don't want to lose them to a competitor who might offer them a discount.
+-- Answer: I would get the territorial sales reps to telephonically reach these customers (Umhlanga Fresh 108 in Gauteng, Ridgeway Foods 308 in KZN, Kalahari Kitchen 42 in Gauteng) and offer them a trade promotion, as their total revenue is quite sizeable and we don't want to lose them to a competitor who might offer them a discount.
 
 -- ====================================================================
 
@@ -163,7 +163,7 @@ LEFT JOIN sizwe_sales_orders so
 LEFT JOIN sizwe_sales_lines sl 
     ON so.order_id = sl.order_id 
 GROUP BY 1, 2, 3, 4
-ORDER BY 6 DESC
+ORDER BY 6 DESC;
 
 -- ====================================================================
 
@@ -204,8 +204,9 @@ SELECT
     month_lag_2,
     month_lag_3
 FROM monthly_revenue_lags
+ORDER BY 1;
 
--- Answer: It is clear that the monthly revenue drops month-over-month during the winter, more specifically from Jul to Jan (i.e. winter) and it grows from Feb to Jun (i.e. summer). The questest month was Dec 2024 but Dec 2025 also performed poorly. 
+-- Answer: It is clear that the monthly revenue drops month-over-month from Jul to Dec and it grows from Jan to Jun. The quiestest month was Dec 2023 but Dec 2024 also performed poorly. 
 
 -- ====================================================================
 
@@ -253,6 +254,6 @@ SELECT
     fy2025_rev,
     ROUND((100 * (fy2025_rev - fy2025_cogs) / fy2025_rev),2) AS fy2025_gm,
     ROUND((100 * fy2025_rev / SUM(fy2025_rev) OVER()),2) AS fy2025_share_percent
-FROM revenue_cogs
+FROM revenue_cogs;
 
--- Answer: The gross margin for each product line hasn't changed significantly from 2024 to 2025. However, there's been more significant changes in each of their share of the total revenue in each year. Most notably, Bulk commercial product line has increased from 25.02% to 33.65%. Bulk commercial has the smallest gross margin compared to other product lines. This contributed to the reduced gross margin in 2025. At the same time, the decline in gross margin is further accounted for by the decreased share of the total revenue for the product lines with higher gross margins. For example, Single Origin product line which has the highest gross margin has contributed relately less to the total revenue in 2025 (17.57%) compared to in 2024 (19.45%). The same reason applies to all the remaining product lines with higher gross margins.
+-- Answer: The gross margin for each product line hasn't changed significantly from 2024 to 2025 (all <0.3%). However, there's been more significant changes in each of their share of the total revenue in each year. Most notably, Bulk commercial product line's share of the total revenue has increased from 25.02% to 33.65% from FY2024 to FY2025. Bulk commercial has the smallest gross margin compared to other product lines for both years (19.89% and 19.91%). This contributed to the reduced overall gross margin in 2025. At the same time, the decline in gross margin is further accounted for by the decreased share of the total revenue for the product lines with higher gross margins. For example, Single Origin product line which has the highest gross margin has contributed relately less to the total revenue in 2025 (17.57%) compared to in 2024 (19.45%). The same reason applies to all the remaining product lines with higher gross margins.
