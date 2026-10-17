@@ -127,7 +127,7 @@ LEFT JOIN sizwe_trade_promotions tp ---Not inner join, because we want to see wh
 WHERE c.channel = 'Wholesale'
     AND tp.customer_id IS NULL
 GROUP BY c.customer_id, c.trading_name, c.segment, c.province
-ORDER BY 5 DESC
+ORDER BY customer_total_revenue DESC
 LIMIT 15;
 
 -- Answer: I would get the territorial sales reps to telephonically reach these customers (Umhlanga Fresh 108 in Gauteng, Ridgeway Foods 308 in KZN, Kalahari Kitchen 42 in Gauteng) and offer them a trade promotion, as their total revenue is quite sizeable and we don't want to lose them to a competitor who might offer them a discount.
