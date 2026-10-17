@@ -54,7 +54,7 @@ The entire dataset is synthetic with no real data. The raw data is not uploaded 
 | Window functions | 7 |
 
 ### 🖥️SQL queries
-All queries and written answers are in [`queries.sql`](queries.sql).
+All queries, their outputs, and written answers are in [`queries.sql`](queries.sql).
 
 ## 🖥️How to run
 1. Tool: Databricks SQL
