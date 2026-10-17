@@ -1,6 +1,7 @@
 --Task 1: Channel performance
 -- ======================================
--- Nomsa needs the revenue split by channel for FY2024 and FY2025 side by side, with the growth rate between them. One row per channel, three figures on each. FY2024 is orders placed on or before 30 June 2024. FY2025 is everything after that. 
+-- Nomsa needs the revenue split by channel for FY2024 and FY2025 side by side, with the growth rate between them. 
+-- One row per channel, three figures on each. 
 -- ======================================
 -- FY2024 is 1 Jul 2023 to 30 Jun 2024
 -- FY2025 is 1 Jul 2024 to 30 Jun 2025
