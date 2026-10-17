@@ -35,19 +35,3 @@ SELECT
     fy2025_revenue,
     ROUND(((fy2025_revenue - fy2024_revenue) / fy2024_revenue * 100), 2) AS percent_growth
 FROM draft_revenue;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
