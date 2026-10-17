@@ -86,26 +86,23 @@ GROUP BY c.channel;
 -- Bongani wants a one-page list of the ten largest customers by FY2025 revenue, showing the trading name, segment, province, the sales representative who owns the account, and the revenue. Not every customer has a sales representative. Make sure your query does not silently drop anyone. 
 
 SELECT 
-    trading_name,
-    segment,
-    province,
-    rep_name,
-    ROUND(SUM(CASE
-            WHEN order_date BETWEEN '2024-07-01' AND '2025-06-30' THEN line_revenue
-            ELSE 0
-        END
-        ),2) AS total_revenue_2025
+    c.customer_id,
+    c.trading_name,
+    c.segment,
+    c.province,
+    r.rep_id,
+    r.rep_name,
+    ROUND(SUM(sl.line_revenue),2) AS fy2025_revenue
 FROM sizwe_customers c
 JOIN sizwe_sales_orders so 
     ON c.customer_id = so.customer_id
 JOIN sizwe_sales_lines sl
     ON so.order_id = sl.order_id
-LEFT JOIN sizwe_rep_visits rv --Prevent silent dropping of customers without rep visits (i.e. they might have the highest total revenue without having a sales rep assigned to them)
-    ON c.customer_id = rv.customer_id
-LEFT JOIN sizwe_reps r --Prevent silent dropping of customers without rep visits, same logic as above
-    ON r.rep_id = rv.rep_id
-GROUP BY trading_name, segment, province, rep_name
-ORDER BY 5 DESC
+LEFT JOIN sizwe_reps r
+    ON c.rep_id = r.rep_id
+WHERE order_date BETWEEN '2024-07-01' AND '2025-06-30'
+GROUP BY 1, 2, 3, 4, 5, 6
+ORDER BY 7 DESC
 LIMIT 10;
 
 -- ====================================================================
@@ -115,6 +112,7 @@ LIMIT 10;
 -- Trade promotions are how Sizwe supports its wholesale accounts. Bongani thinks some sizeable customers have been getting nothing. Return the fifteen highest-revenue Wholesale customers who have never received a trade promotion, with their segment and province. One sentence: what would you recommend doing about the top three?
 
 SELECT
+    c.customer_id,
     c.trading_name,
     c.segment,
     c.province,
