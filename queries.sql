@@ -51,7 +51,7 @@ GROUP BY product_line
 ORDER BY 4 DESC;
 
 -- Answer:
--- The House Blend product line yielded the highest gross profit of R107,148,746.60). However, it's Single Origin that has the highest gross margin percentage of 44.27%.
+-- The House Blend product line yielded the highest gross profit of R107,148,746.60. However, it's Single Origin that has the highest gross margin percentage of 44.27%.
 
 -- ====================================================================
 
@@ -77,7 +77,7 @@ JOIN sizwe_ar_ledger al
     ON c.customer_id = al.customer_id
 GROUP BY c.channel;
 
--- Answer: One can see that the major collections problem lies with the wholesale channel. Its unsettled invoices is significantly higher (3454) than the subscription channel (44). Likewise, the wholesale channel takes much longer to settle (69 vs 4 days) and the total unsettled amount is much higher than the subscription channel (~R87m vs ~R7.5m).
+-- Answer: One can see that the major collections problem lies with the wholesale channel. The total number of invoices for wholesale was 28944 and for subscription 19200. Its unsettled invoices are significantly higher (3454) than the subscription channel (44). Likewise, the wholesale channel takes much longer to settle (69 vs 4 days) and the total unsettled amount is much higher than the subscription channel (~R87.8m vs ~R7.5m).
 
 -- ====================================================================
 
@@ -199,14 +199,11 @@ SELECT
     year_month,
     month_revenue,
     ROUND(((month_revenue - month_lag_1) / month_lag_1 * 100), 2) AS percent_change,
-    ROUND(((month_lag_1 + month_lag_2 + month_lag_3) / 3),2) AS rolling_3_month_avg,
-    month_lag_1,
-    month_lag_2,
-    month_lag_3
+    ROUND(((month_lag_1 + month_lag_2 + month_lag_3) / 3),2) AS rolling_3_month_avg
 FROM monthly_revenue_lags
 ORDER BY 1;
 
--- Answer: It is clear that the monthly revenue drops month-over-month from Jul to Dec and it grows from Jan to Jun. The quiestest month was Dec 2023 but Dec 2024 also performed poorly. 
+-- Answer: It is clear that the monthly revenue drops month-over-month from Jul to Dec and it grows from Jan to Jun. The quiestest month was Dec 2023 (R29,872,699.78) which was -13.09% from Nov 2023 and lower than the 3 lagging months' average of R35,654,249.12 (Sep, Oct, Nov 2023).
 
 -- ====================================================================
 
@@ -256,4 +253,4 @@ SELECT
     ROUND((100 * fy2025_rev / SUM(fy2025_rev) OVER()),2) AS fy2025_share_percent
 FROM revenue_cogs;
 
--- Answer: The gross margin for each product line hasn't changed significantly from 2024 to 2025 (all <0.3%). However, there's been more significant changes in each of their share of the total revenue in each year. Most notably, Bulk commercial product line's share of the total revenue has increased from 25.02% to 33.65% from FY2024 to FY2025. Bulk commercial has the smallest gross margin compared to other product lines for both years (19.89% and 19.91%). This contributed to the reduced overall gross margin in 2025. At the same time, the decline in gross margin is further accounted for by the decreased share of the total revenue for the product lines with higher gross margins. For example, Single Origin product line which has the highest gross margin has contributed relately less to the total revenue in 2025 (17.57%) compared to in 2024 (19.45%). The same reason applies to all the remaining product lines with higher gross margins.
+-- Answer: The gross margin for each product line hasn't changed significantly from 2024 to 2025 (all within 0.3%). However, there's been more significant changes in each of their share of the total revenue in each year. Most notably, Bulk commercial product line's share of the total revenue has increased from 25.02% to 33.65% from FY2024 to FY2025. Bulk commercial has the smallest gross margin compared to other product lines for both years (19.89% and 19.91%) against higher margins elsewhere. This contributed to the reduced overall gross margin in 2025. At the same time, the decline in gross margin is further accounted for by the decreased share of the total revenue for the product lines with higher gross margins. For example, Single Origin product line which has the highest gross margin has contributed relatively less to the total revenue in 2025 (17.57%) compared to in 2024 (19.45%). The same reason applies to all the remaining product lines with higher gross margins.
