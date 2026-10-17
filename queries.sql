@@ -273,7 +273,7 @@ SELECT
 FROM monthly_revenue_lags
 ORDER BY 1;
 
--- Answer: Yes, there is a seasonal pattern. It is clear that the monthly revenue drops month-over-month from Jul to Dec and it grows from Jan to Jun. The quietest month was Dec 2023 (R29,872,699.78) which was -13.09% from Nov 2023 and lower than the 3 lagging months' average of R35,654,249.12 (Sep, Oct, Nov 2023).
+-- Answer: Yes, there is a seasonal pattern: revenue peaks around June to July, falls month on month from August to December, and recovers from January to June. The quietest month was December 2023 (R29,872,699.78), down 13.09% on November and below the R35,654,249.12 average of the three months before it.
 
 -- Output:
 -- year_month	month_revenue	percent_change	rolling_3_month_avg
@@ -350,7 +350,7 @@ SELECT
     ROUND((100 * fy2025_rev / SUM(fy2025_rev) OVER()),2) AS fy2025_share_percent
 FROM revenue_cogs;
 
--- Answer: The gross margin for each product line hasn't changed significantly from 2024 to 2025 (all within 0.3 percentage points). However, there have been more significant changes in each of their share of the total revenue in each year. Most notably, Bulk commercial product line's share of the total revenue has increased from 25.02% to 33.65% from FY2024 to FY2025. Bulk commercial has the smallest gross margin compared to other product lines for both years (19.89% and 19.91%) against higher margins elsewhere. This contributed to the reduced overall gross margin in 2025. At the same time, the decline in gross margin is further accounted for by the decreased share of the total revenue for the product lines with higher gross margins. For example, Single Origin product line which has the highest gross margin has contributed relatively less to the total revenue in 2025 (17.57%) compared to in 2024 (19.45%). The same reason applies to all the remaining product lines with higher gross margins.
+-- Answer: The gross margin for each product line hasn't changed significantly from 2024 to 2025 (all within 0.3 percentage points). However, there have been more significant changes in each of their share of the total revenue in each year. Most notably, Bulk Commercial product line's share of the total revenue has increased from 25.02% to 33.65% from FY2024 to FY2025. Bulk Commercial has the smallest gross margin compared to other product lines for both years (19.89% and 19.91%) against higher margins elsewhere. This contributed to the reduced overall gross margin in 2025. At the same time, the decline in gross margin is further accounted for by the decreased share of the total revenue for the product lines with higher gross margins. For example, Single Origin product line which has the highest gross margin has contributed relatively less to the total revenue in 2025 (17.57%) compared to in 2024 (19.45%). The same reason applies to all the remaining product lines with higher gross margins.
 
 -- Output:
 -- product_line	    fy2024_rev	    fy2024_gm	fy2024_share_percent	fy2025_rev	    fy2025_gm	fy2025_share_percent
