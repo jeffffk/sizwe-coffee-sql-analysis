@@ -1,12 +1,12 @@
 # ☕Sizwe Coffee: SQL Analysis of Sales, Margins and Collections
 
 ## 📂Project Overview
-Sizwe Coffee is a fictional company based in South Africa that buys green coffee beans, roasts them, and sells to about 1400 businesses, including grocery chains, hotels, cafés, offices, restaurants and retailers. It doesn't own any retail stores. Roasted coffee beans are sold to the businesses either via wholesale contracts (large volumes) or subscription (monthly delivery). There are five product lines: House Blend, Single Origin, Bulk Commercial, Decaf, and Capsules. 
+Sizwe Coffee is a fictional company based in South Africa that buys green coffee beans, roasts them, and sells to about 1400 businesses, including grocery chains, hotels, cafés, offices, restaurants and retailers. It doesn't own any retail stores. There two channels for sale of roasted coffee beans: wholesale contracts (large volumes) or subscription (monthly delivery). There are five product lines: House Blend, Single Origin, Bulk Commercial, Decaf, and Capsules. 
 
 ### 📚Assignment
-This project is a SQL assignment from the Witle Academy data analytics bootcamp. Eight business questions were raised by two stakeholders, Nomsa, the Financial Director, and Bongani, the National Sales Manager. 
+This project is a SQL assignment from the Witle Academy data analytics bootcamp. Eight business questions were raised by two stakeholders, Nomsa (the Financial Director), and Bongani (the National Sales Manager). 
 
-The questions were answered using Databricks SQL. All queries and written answers are in [`queries.sql`](queries.sql).
+The questions were answered using Databricks SQL. All queries, their outputs, and written answers are in [`queries.sql`](queries.sql).
 
 ### ❓The eight questions:
 1. **Channel performance:** revenue by channel for FY2024 and FY2025, with growth from FY2024 to FY2025.
