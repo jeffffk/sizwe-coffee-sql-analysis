@@ -75,8 +75,3 @@ All queries and written answers are in [`queries.sql`](queries.sql).
 - **Sales rep performances** It's impressive that many of the reps (16 out of 18) are hitting beyond their monthly targets. 8 out of 18 of them have hit 190% and above of their monthly targets. It's important to keep the high performers well incentivised for bringing in higher revenue. But it's also important to have a discussion with reps who are not hitting their monthly targets (R-011 and R-008) to find out reasons for their underperformance and how they may be further assisted.
 - **Big accounts with no promotion** There are some customers who are making large purchases but never been offered trade promotions. The top 3 have contributed R6.22m, R4.45m, and R4.44m over FY2024 and FY2025 together. It may be wise to consider offering them trade promotions as they might hop over to another distributor who could offer a discount.
 - **One customer dominates.** Halvane Retail Group is the largest account at R38.4m in FY2025, about 8% of revenue in FY2025 and more than 11 times the 2nd highest revenue customer (R3.38m). 
-
-## Limitations
-- Task 3 compares channels, not time periods.
-- Task 5 ranks customers on all-time revenue (both years), while Task 4 uses FY2025 only, so a customer's figure differs between them.
-- The rolling average in Task 7 uses the three months before each month and excludes the current one. June 2025 is a partial month (data ends 27 June).
