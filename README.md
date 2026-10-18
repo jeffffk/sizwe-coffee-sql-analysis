@@ -54,14 +54,14 @@ The entire dataset is synthetic with no real data. However, the raw data is not 
 | Date functions | 3,7 |
 | Sorting | 2,4,5,6,7 |
 | Calculations | 1,2,3,6,7,8 | 
-| Window functions | 7 |
+| Window functions | 7,8 |
 
 ### 🖥️SQL queries
 All queries, their outputs, and written answers are in [`queries.sql`](queries.sql).
 
 ## 🖥️How to run
 1. Tool: Databricks SQL
-2. The seven datasets were provided by Witle Academy Data Analytics Bootcamp, and it's not been uploaded in this repo.
+2. The seven tables were provided by Witle Academy Data Analytics Bootcamp, and they have not been uploaded in this repo.
 3. For those with access to the raw data files (csv): open queries.sql and run each query in order. Each has a task-number comment, its output and its written answer.
 
 ## ✅Key insights
@@ -70,11 +70,11 @@ All queries, their outputs, and written answers are in [`queries.sql`](queries.s
 - **Growth is even across channels:** Wholesale grew 8.85% (about R308.2m to R335.4m) and subscription 8.84% (about R132.8m to R144.6m). Total revenue rose from about R441.0m to about R480.0m, and wholesale is about 70% of it in both years.
 - **Wholesale customers collections problem:** 3,454 of wholesale's 28,944 invoices (about 12%) are still open, against 44 of 19,200 (0.2%) for subscription. On average, wholesale takes 69 days to settle versus 4 for subscription, and holds about R87.8m (wholesale) outstanding against about R750,000 (subscription). It's imperative to note that this only looks at the channels and not time periods. Therefore, it can't show whether payment is getting slower over time. However, we'd need to further look into wholesale customers and their invoices to gain further insight.
 - **Profit and margin:** House Blend earns the most gross profit (R107.15m), but Single Origin has the highest gross margin (44.27%), across FY2024 and FY2025 combined.
-- **The overall gross margin decline:** No product line's margin moved by more than 0.3 percentage points between FY2024 and FY2025. Low-margin Bulk commercial (about 20% margin) grew from 25.02% to 33.65% of revenue, while higher-margin lines lost share, for example Single Origin (19.45% to 17.57%) which has the highest gross margin of all product lines. Increasing sale of Single Origin in FY2026 may contribute well to higher overall revenue and profit margin.
-- **Seasonal revenue pattern:** The revenue falls month on month from August to December and recovers from January to June/July. The quietest month was December for FY2024 (R29.87m, down 13.09% on November) and for FY2025 (R32.6m, down 12.89% on November). For comparison, the rolling 3 months average was R33.34m (Dec 2023) and R36.35m (Dec 2024). 
+- **The overall gross margin decline:** No product line's margin moved by more than 0.3 percentage points between FY2024 and FY2025. Low-margin Bulk Commercial (about 20% margin) grew from 25.02% to 33.65% of revenue, while higher-margin lines lost share, for example Single Origin (19.45% to 17.57%) which has the highest gross margin of all product lines. Increasing sale of Single Origin in FY2026 may contribute well to higher overall revenue and profit margin.
+- **Seasonal revenue pattern:** The revenue falls month on month from August to December and recovers from January to June/July. The quietest month was December for FY2024 (R29.87m, down 13.09% on November) and for FY2025 (R32.6m, down 12.89% on November). For comparison, the rolling three-month average was R33.34m (Dec 2023) and R36.35m (Dec 2024). 
 
 ### 📉For Bongani (the national sales manager)
-- **Highest gross margin, relatively small revenue:** The Single Origin product line has the highest gross margin (44.24% in FY 2024, 44.31% in FY2025) but contributed only modestly (3rd highest of the 5 product lines) to the total revenue (19.45% in FY2024). Furthermore, its contribution has also decreased to 17.57% in FY2025 from FY2024. Growing Single Origin’s share of sales is the clearest way to lift overall margin, so it’s worth testing with the sales reps.
-- **Sales rep performances:** It's impressive that many of the reps (16 out of 18) are hitting beyond their monthly targets. 8 out of 18 of them have hit 190% and above of their monthly targets. It's important to keep the high performers well incentivised for bringing in higher revenue. But it's also important to have a discussion with reps who are not hitting their monthly targets (R-011, Sipho Steyn and R-008, Johan Naidoo) to find out reasons for their underperformance and how they may be further assisted.
-- **Big accounts with no promotion:** There are some customers who are making large purchases but never been offered trade promotions. The top 3 have contributed R6,224,772.37, R4,448,744.72, and R4,447,225.01 over FY2024 and FY2025 combined. It may be wise to consider offering them trade promotions as they could potentially hop over to another distributor who might offer a discount.
+- **Highest gross margin, relatively small revenue:** The Single Origin product line has the highest gross margin (44.24% in FY2024, 44.31% in FY2025) but contributed only modestly (3rd highest of the 5 product lines) to the total revenue (19.45% in FY2024). Furthermore, its contribution has also decreased to 17.57% in FY2025 from FY2024. Growing Single Origin’s share of sales is the clearest way to lift overall margin, so it’s worth testing with the sales reps.
+- **Sales rep performances:** It's impressive that many of the reps (16 out of 18) are hitting beyond their monthly targets. 8 out of 18 of them have hit 190% and above of their monthly targets. It's important to keep the high performers well incentivised for bringing in higher revenue. But it's also important to have a discussion with reps who are not hitting their monthly targets (Sipho Steyn and Johan Naidoo) to find out reasons for their underperformance and how they may be further assisted.
+- **Big accounts with no promotion:** There are some customers who are making large purchases but never been received trade promotions. The top 3 have contributed R6,224,772.37, R4,448,744.72, and R4,447,225.01 over FY2024 and FY2025 combined. It may be wise to consider offering them trade promotions as they could potentially hop over to another distributor who might offer a discount.
 - **One customer dominates:** Halvane Retail Group is the largest account at R38.4m in FY2025, accounting for about 8% of revenue in FY2025 and more than 11 times the 2nd highest revenue customer (R3.38m). 
