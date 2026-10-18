@@ -147,7 +147,7 @@ SELECT
     c.trading_name,
     c.segment,
     c.province,
-    ROUND(SUM(sl.line_revenue),2) AS customer_total_revenue
+    ROUND(SUM(sl.line_revenue),2) AS customer_total_revenue -- Revenue covers all orders in the data (FY2024 and FY2025 combined)
 FROM sizwe_customers c
 JOIN sizwe_sales_orders so
     ON c.customer_id = so.customer_id
