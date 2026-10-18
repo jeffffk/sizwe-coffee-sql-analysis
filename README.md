@@ -1,7 +1,7 @@
 # ☕Sizwe Coffee: SQL Analysis of Sales, Margins and Collections
 
 ## 📂Project Overview
-Sizwe Coffee is a fictional company based in South Africa that buys green coffee beans, roasts them, and sells to about 1400 businesses, including grocery chains, hotels, cafés, offices, restaurants and retailers. It doesn't own any retail stores. There are two channels for sale of roasted coffee beans: wholesale contracts (large volumes) or subscription (monthly delivery). There are five product lines: House Blend, Single Origin, Bulk Commercial, Decaf, and Capsules. There are 18 sales reps in total, each with their territory and monthly targets.
+Sizwe Coffee is a fictional company based in South Africa that buys green coffee beans, roasts them, and sells to 1400 businesses, including grocery chains, hotels, cafés, offices, restaurants and retailers. It doesn't own any retail stores. There are two channels for sale of roasted coffee beans: wholesale contracts (large volumes) or subscription (monthly delivery). There are five product lines: House Blend, Single Origin, Bulk Commercial, Decaf, and Capsules. There are 18 sales reps in total, each with their territory and monthly targets.
 
 ### 📚Assignment
 This project is a SQL assignment from the Witle Academy data analytics bootcamp. Eight business tasks were provided by two fictional stakeholders, Nomsa (the Financial Director), and Bongani (the National Sales Manager). 
