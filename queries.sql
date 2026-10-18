@@ -258,50 +258,48 @@ monthly_revenue_lags AS
         year_month,
         month_revenue,
         LAG(month_revenue) OVER(ORDER BY year_month) AS month_lag_1,
-        LAG(LAG(month_revenue) OVER(ORDER BY year_month)) OVER(ORDER BY year_month) AS month_lag_2,
-        LAG(LAG(LAG(month_revenue) OVER(ORDER BY year_month)) OVER(ORDER BY year_month)) OVER(ORDER BY year_month) AS month_lag_3
+        LAG(LAG(month_revenue) OVER(ORDER BY year_month)) OVER(ORDER BY year_month) AS month_lag_2
     FROM monthly_revenue
     )
 
--- rolling_3_month_avg = average of the 3 months before each month (current month excluded)
+-- rolling_3_month_avg = average of the current month and the 2 months before it
 
 SELECT 
     year_month,
     month_revenue,
     ROUND(((month_revenue - month_lag_1) / month_lag_1 * 100), 2) AS percent_change,
-    ROUND(((month_lag_1 + month_lag_2 + month_lag_3) / 3),2) AS rolling_3_month_avg
+    ROUND(((month_revenue + month_lag_1 + month_lag_2) / 3),2) AS rolling_3_month_avg
 FROM monthly_revenue_lags
 ORDER BY 1;
 
--- Answer: Yes, there is a seasonal pattern: revenue peaks around June to July, falls month on month from August to December, and recovers from January to June. The quietest month was December 2023 (R29,872,699.78), down 13.09% on November and below the R35,654,249.12 average of the three months before it.
+-- Answer: Yes, there is a seasonal pattern: revenue peaks around June to July, falls month on month from August to December, and recovers from January to June. The quietest month was December 2023 (R29,872,699.78), down 13.09% on November and the lowest of all 24 months.
 
 -- Output:
 -- year_month	month_revenue	percent_change	rolling_3_month_avg
 -- 2023-07	    41051471.75	    null	        null
--- 2023-08	    39607744.34	    -3.52	        null
--- 2023-09	    36807779.06	    -7.07	        null
--- 2023-10	    35784805.69	    -2.78	        39155665.05
--- 2023-11	    34370162.62	    -3.95	        37400109.7
--- 2023-12	    29872699.78	    -13.09	        35654249.12
--- 2024-01	    31255621.08	    4.63	        33342556.03
--- 2024-02	    35156025.63	    12.48	        31832827.83
--- 2024-03    	37287497.58    	6.06	        32094782.16
--- 2024-04	    37950728.75	    1.78	        34566381.43
--- 2024-05	    40372504.38	    6.38	        36798083.99
--- 2024-06	    41482956.81    	2.75	        38536910.24
--- 2024-07    	44577702.77	    7.46	        39935396.65
--- 2024-08	    43053627.21	    -3.42	        42144387.99
--- 2024-09	    40013872.74	    -7.06	        43038095.6
--- 2024-10    	39014595.93	    -2.5	        42548400.91
--- 2024-11	    37435415.91	    -4.05	        40694031.96
--- 2024-12	    32609167.66	    -12.89	        38821294.86
--- 2025-01    	34184711.27	    4.83	        36353059.83
--- 2025-02	    38246732.89	    11.88	        34743098.28
--- 2025-03	    40504297.3	    5.9	            35013537.27
--- 2025-04	    41326872.55	    2.03	        37645247.15
--- 2025-05	    43905063.28	    6.24	        40025967.58
--- 2025-06	    45127963.84	    2.79	        41912077.71
-
+-- 2023-08    	39607744.34	    -3.52	        null
+-- 2023-09    	36807779.06	    -7.07	        39155665.05
+-- 2023-10	    35784805.69	    -2.78	        37400109.7
+-- 2023-11	    34370162.62	    -3.95	        35654249.12
+-- 2023-12    	29872699.78	    -13.09        	33342556.03
+-- 2024-01	    31255621.08	    4.63	        31832827.83
+-- 2024-02	    35156025.63    	12.48        	32094782.16
+-- 2024-03    	37287497.58	    6.06	        34566381.43
+-- 2024-04	    37950728.75	    1.78	        36798083.99
+-- 2024-05    	40372504.38	    6.38	        38536910.24
+-- 2024-06	    41482956.81    	2.75	        39935396.65
+-- 2024-07	    44577702.77	    7.46        	42144387.99
+-- 2024-08    	43053627.21    	-3.42        	43038095.6
+-- 2024-09	    40013872.74	    -7.06	        42548400.91
+-- 2024-10	    39014595.93	    -2.5	        40694031.96
+-- 2024-11	    37435415.91	    -4.05	        38821294.86
+-- 2024-12    	32609167.66	    -12.89        	36353059.83
+-- 2025-01	    34184711.27	    4.83	        34743098.28
+-- 2025-02	    38246732.89	    11.88	        35013537.27
+-- 2025-03	    40504297.3	    5.9	            37645247.15
+-- 2025-04	    41326872.55	    2.03	        40025967.58
+-- 2025-05	    43905063.28	    6.24	        41912077.71
+-- 2025-06	    45127963.84	    2.79	        43453299.89
 -- ====================================================================
 
 -- Task 8 - Why has the margin moved?
