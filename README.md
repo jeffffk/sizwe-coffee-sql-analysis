@@ -15,7 +15,7 @@ The tasks were performed using Databricks SQL. All queries, their outputs, and w
 4. **Top ten accounts:** the ten largest customers in FY2025 by revenue, each with an assigned rep
 5. **Commercial gap:** the fifteen highest revenue wholesale customers who never received a trade promotion
 6. **Rep performance:** each rep's FY2025 monthly average against their target
-7. **Shape of the year FY2024 & FY2025:** monthly revenue, month-on-month change in revenue, and the average of rolling three-month revenue
+7. **Shape of the year FY2024 & FY2025:** monthly revenue, month-on-month change in revenue, and a rolling three-month average
 8. **Margin movement:** why has gross margin fallen from 34.7% (FY2024) to 33.0% (FY2025)?
 
 #### ⚠️Financial years 
@@ -71,7 +71,7 @@ All queries, their outputs, and written answers are in [`queries.sql`](queries.s
 - **Wholesale customers collections problem:** 3,454 of wholesale's 28,944 invoices (about 12%) are still open, against 44 of 19,200 (0.2%) for subscription. On average, wholesale takes 69 days to settle versus 4 for subscription, and holds about R87.8m (wholesale) outstanding against about R750,000 (subscription). It's imperative to note that this only looks at the channels and not time periods. Therefore, it can't show whether payment is getting slower over time. Wholesale invoices should be investigated first.
 - **Profit and margin:** House Blend earns the most gross profit (R107.15m), but Single Origin has the highest gross margin (44.27%), across FY2024 and FY2025 combined.
 - **The overall gross margin decline:** No product line's margin moved by more than 0.3 percentage points between FY2024 and FY2025. Low-margin Bulk Commercial (about 20% margin) grew from 25.02% to 33.65% of revenue, while higher-margin lines lost share, for example Single Origin (19.45% to 17.57%) which has the highest gross margin of all product lines. Increasing sale of Single Origin in FY2026 may contribute well to higher overall revenue and profit margin.
-- **Seasonal revenue pattern:** The revenue falls month on month from August to December and recovers from January to June/July. The quietest month was December for FY2024 (R29.87m, down 13.09% on November) and for FY2025 (R32.6m, down 12.89% on November). For comparison, a rolling three-month average was R33.34m (Dec 2023) and R36.35m (Dec 2024). 
+- **Seasonal revenue pattern:** The revenue falls month on month from August to December and recovers from January to June/July. The quietest month was December for FY2024 (R29.87m, down 13.09% on November) and for FY2025 (R32.6m, down 12.89% on November). For comparison, the rolling three-month average was R33.34m (Dec 2023) and R36.35m (Dec 2024). 
 
 ### 📉For Bongani (the national sales manager)
 - **Highest gross margin, relatively small revenue:** The Single Origin product line has the highest gross margin (44.24% in FY2024, 44.31% in FY2025) but contributed only modestly (3rd highest of the 5 product lines) to the total revenue (19.45% in FY2024). Furthermore, its contribution has also decreased to 17.57% in FY2025 from FY2024. Growing Single Origin’s share of sales is the clearest way to lift overall margin, so it’s worth testing with the sales reps.
